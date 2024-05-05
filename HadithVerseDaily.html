@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hadith and Ayah Generator</title>
+  <link rel="stylesheet" href="HadithVerseDaily.css">
+  <link rel="icon" href="360_F_289947270_QBSLkuLWxRRrt8C8DD2Y3knT1Uw53lwJ.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css?_cacheOverride=1714881006623" integrity="sha512-bIWH7l/FuNSO4zrOZiV5Zl5y+E0QO3IjtASJFe8mzvU/7ukI2xCtgizJE8QkPCo6O8n5G96DvDl7+YDR6D+vMw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <img src="360_F_289947270_QBSLkuLWxRRrt8C8DD2Y3knT1Uw53lwJ.png" alt="Logo">
+          <h1>Hadith and Ayah Generator</h1>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+          <li><a href="#"><i class="fas fa-phone"></i> Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="hadith">
+      <h2>Hadith of the Day</h2>
+      <p id="hadithText">Click the button below to generate a new Hadith</p>
+      <button onclick="generateHadith()">Generate Hadith</button>
+    </div>
+    <div class="ayah">
+      <h2>Ayah of the Day</h2>
+      <p id="ayahText">Click the button below to generate a new Ayah</p>
+      <button onclick="generateAyah()">Generate Ayah</button>
+    </div>
+  </main>
+  <div class="contact">
+    <h2>Contact Us</h2>
+    <p><i class="fas fa-envelope"></i> Email: info@example.com</p>
+    <p><i class="fas fa-phone"></i> Phone: +1234567890</p>
+  </div>
+  <footer>
+    <p>&copy; 2024 Hadith and Ayah Generator</p>
+  </footer>
+  <script>
+    // Hadiths
+    const hadiths = [
+      "The merciful will be shown mercy by the Most Merciful. Be merciful to those on the earth and the One in the heavens will have mercy upon you. (Tirmidhi)",
+      "The strong person is not the one who can wrestle someone else down. The strong person is the one who can control himself when he is angry. (Sahih al-Bukhari)",
+      "Do not be people without minds of your own, saying that if others treat you well you will treat them well, and that if they do wrong you will do wrong. Instead, accustom yourselves to do good if people do good and not to do wrong if they do evil. (Sunan At-Tirmidhi)",
+      "Kindness is a mark of faith, and whoever is not kind has no faith. (Muslim)",
+      "He who goes out in search of knowledge is in Allah's path until he returns. (Tirmidhi)",
+      "The strong man is not the one who is strong in wrestling, but the one who controls himself in anger. (Sahih al-Bukhari)",
+      "A good word is charity. (Bukhari & Muslim)",
+      "The best of you are those who are best to the women. (Tirmidhi)",
+      "A man walking along a path felt very thirsty. Reaching a well, he descended into it, drank his fill, and came up. Then he saw a dog with its tongue hanging out, trying to lick up mud to quench its thirst. The man said, 'This dog is feeling the same thirst that I felt.' He went down into the well again, filled his shoe with water, and gave the dog a drink. So, Allah thanked him and forgave his sins.' The people asked, 'O Allah's Apostle! Is there a reward for us in serving the animals?' He said, '(Yes) There is a reward for serving any living being.' (Sahih al-Bukhari)",
+      "The best of people are those that bring most benefit to the rest of mankind. (Daraqutni)",
+      "The most beloved of deeds in the sight of Allah are the continuous ones, even if they are little. (Sahih Bukhari)",
+      "Whoever does not show mercy to our young ones, or acknowledge the rights of our elders, is not one of us. (Tirmidhi)",
+      "O people! Spread the salam (greetings), feed others, maintain family ties, and pray at night when others are asleep, you will enter Jannah in peace. (Tirmidhi)",
+      "The best charity is that given to a relative who does not like you. (Tabarani)",
+      "Your smile for your brother is charity. (Tirmidhi)",
+      "Allah does not look at your appearance or your possessions; but He looks at your heart and your deeds. (Muslim)",
+      "He who is deprived of forbearance and gentleness is, in fact, deprived of all good. (Muslim)",
+      "The best among you are those who are best to their wives. (Tirmidhi)",
+      "The most wicked among the people in the eye of Allah on the Day of Judgement is the men who go to their wives and she comes to them, and then he divulges her secret. (Muslim)",
+      "The most hated person in the sight of Allah is the most quarrelsome person. (Bukhari)",
+      "The most beloved of the deeds in the sight of Allah is making the believer happy. (Tabarani)",
+      "No one has swallowed a more bitter pill than that of anger—seeking the pleasure of Allah. (Tirmidhi)",
+      "A Muslim is a brother of another Muslim, so he should not oppress him, nor should he hand him over to an oppressor. (Muslim)",
+      "The world, with all that it contains, is accursed except for the remembrance of Allah that which pleases Allah; and the religious scholars and seekers of knowledge. (Tirmidhi)",
+      "He is not a believer who eats his fill while his neighbor remains hungry. (Al-Muwatta)",
+      "He who wishes to enter Paradise through its best door must please his parents. (Bukhari and Muslim)",
+      "He who does not acquire knowledge with the sole intention of seeking the Pleasure of Allah but for worldly gain, will not smell the fragrance of Jannah on the Day of Resurrection. (Abu Dawud)",
+      "When a person dies, all his deeds come to an end except for three: ongoing charity, beneficial knowledge, or a righteous child who prays for him. (Muslim)",
+      "Do not indulge in excessive talk except when remembering Allah. Excessive talking without the Remembrance of Allah hardens the heart; and those who are the farthest from Allah are those whose hearts are hard. (Tirmidhi)",
+      "Allah is One and likes Unity. (Muslim)",
+      "If you do not feel ashamed of anything, then you can do whatever you like. (Tirmidhi)",
+      "A believer does not taunt others, he does not curse others, he does not use profanity, and he does not abuse others. (Tirmidhi)",
+      "Every joint of a person must perform a charity each day that the sun rises: to judge justly between two people is a charity. To help a man with his mount, lifting him onto it or hoisting up his belongings onto it, is a charity. And the good word is a charity. And every step that you take towards the prayer is a charity, and removing a harmful object from the road is a charity. (Bukhari & Muslim)",
+      "Wishing for one's brother what one likes for oneself is part of faith. (Tirmidhi)",
+      "Do not consider any act of kindness insignificant, even meeting your brother with a cheerful face. (Muslim)",
+      "He who believes in Allah and the Last Day should not harm his neighbor. And whosoever has faith in Allah and the Last Day, should entertain his guest generously. And whosoever has faith in Allah and the Last Day, should speak what is good or keep quiet. (Bukhari & Muslim)",
+      "He who does not thank the people is not thankful to Allah. (Ahmad, Tirmidhi)",
+      "The perfect believer is one whose character is most excellent and the best among you are those who behave best towards their wives. (Tirmidhi)",
+      "The best among you are those who are best to their wives. (Tirmidhi)",
+      "The best of alms is that which the right hand gives and the left hand knows not of. (Muslim)",
+      "Allah is Gentle and loves gentleness in all things. (Bukhari & Muslim)",
+      "Be kind, for whenever kindness becomes part of something, it beautifies it. Whenever it is taken from something, it leaves it tarnished. (Muslim)",
+      "The best loved deeds to Allah are the ones that are continuous even if they are not very many. (Bukhari & Muslim)",
+      "He who does not show mercy to the young and show respect to the elderly is not one of us. (Tirmidhi)",
+      "O people! Spread the (greetings of) Salam, feed others, maintain family ties, and pray at night when others are asleep, you will enter Heaven in peace. (Tirmidhi)",
+      "The best charity is that given to a relative who does not like you. (Tabarani)",
+      "To smile in the company of your brother is charity. To command to do good deeds and to prevent others from doing evil is charity. To guide a person in a place where he cannot get astray is charity. To remove troublesome things like thorns and bones from the road is charity. To pour water from your jug into the jug of your brother is charity. To guide a person with defective vision is charity for you. (Tirmidhi)",
+      "Your smile for your brother is charity. (Tirmidhi)",
+      "Allah does not look at your appearance or your possessions; but He looks at your heart and your deeds. (Muslim)",
+      "He who is deprived of forbearance and gentleness is, in fact, deprived of all good. (Muslim)"
+    ];
+
+    // Ayahs
+    const ayahs = [
+      "قُلْ هُوَ اللَّهُ أَحَدٌ",
+      "اللَّهُ الصَّمَدُ",
+      "لَمْ يَلِدْ وَلَمْ يُولَدْ",
+      "وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ",
+      "In the name of Allah, the Entirely Merciful, the Especially Merciful.",
+      "All praise is due to Allah, Lord of the worlds.",
+      "The Entirely Merciful, the Especially Merciful.",
+      "Sovereign of the Day of Recompense.",
+      "It is You we worship and You we ask for help.",
+      "Guide us to the straight path -",
+      "The path of those upon whom You have bestowed favor, not of those who have evoked [Your] anger or of those who are astray.",
+      "And We have certainly created man, and We know what his soul whispers to him, and We are closer to him than [his] jugular vein",
+      "When the two receivers receive, seated on the right and on the left.",
+      "Man does not utter any word except that with him is an observer prepared [to record].",
+      "And the intoxication of death will bring the truth; that is what you were trying to avoid.",
+      "And the Horn will be blown. That is the Day of [carrying out] the threat.",
+      "And every soul will come, with it a driver and a witness.",
+      "You were certainly in unmindfulness of this, and We have removed from you your cover, so your sight, this Day, is sharp.",
+      "And his companion, [the angel], will say, 'This [record] is what is with me, prepared.'",
+      "In the name of Allah, the Entirely Merciful, the Especially Merciful.",
+      "Say, 'He is Allah, [who is] One,",
+      "Allah, the Eternal Refuge.",
+      "He neither begets nor is born,",
+      "Nor is there to Him any equivalent.'",
+      "In the name of Allah, the Entirely Merciful, the Especially Merciful.",
+      "Say, 'I seek refuge in the Lord of daybreak",
+      "From the evil of that which He created",
+      "And from the evil of darkness when it settles",
+      "And from the evil of the blowers in knots",
+      "And from the evil of an envier when he envies.'"
+    ];
+
+    function generateHadith() {
+      const randomNumber = Math.floor(Math.random() * hadiths.length);
+      const randomHadith = hadiths[randomNumber];
+      document.getElementById("hadithText").innerText = randomHadith;
+    }
+
+    function generateAyah() {
+      const randomNumber = Math.floor(Math.random() * ayahs.length);
+      const randomAyah = ayahs[randomNumber];
+      document.getElementById("ayahText").innerText = randomAyah;
+    }
+  </script>
+</body>
+</html>
